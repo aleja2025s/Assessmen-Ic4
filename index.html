@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reporte Collections - Hallazgos tNPS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        body {
+
+            font-family: 'DM Sans', 'Product Sans', 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+            background: #820AD1;
+
+            color: #333;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+
+        }
+
+
+
+        .container {
+
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+            padding: 20px;
+
+        }
+
+
+
+        .nu-logo {
+
+            width: auto;
+
+            padding: 0 25px;
+
+            height: 70px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto 18px;
+
+            font-size: 1.5rem;
+
+            font-weight: 800;
+
+            color: #820AD1;
+
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+
+        }
+
+
+
+        header {
+
+            text-align: center;
+
+            color: white;
+
+            padding: 35px 20px 25px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+
+        header h1 {
+
+            font-size: 2.2rem;
+
+            margin-bottom: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+
+        }
+
+
+
+        header p {
+
+            font-size: 0.95rem;
+
+            opacity: 0.95;
+
+            font-weight: 500;
+
+        }
+
+
+
+        .nav-tabs {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+        }
+
+
+
+        .nav-tab {
+
+            padding: 12px 22px;
+
+            background: white;
+
+            border: none;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            font-size: 0.85rem;
+
+            font-weight: 600;
+
+            color: #820AD1;
+
+            transition: all 0.3s ease;
+
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+        }
+
+
+
+        .nav-tab:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+
+            background: #f8f8f8;
+
+        }
+
+
+
+        .nav-tab.active {
+
+            background: #820AD1;
+
+            color: white;
+
+            box-shadow: 0 4px 16px rgba(130, 10, 209, 0.4);
+
+        }
+
+
+
+        .section {
+
+            display: none;
+
+            animation: fadeIn 0.5s;
+
+        }
+
+
+
+        .section.active {
+
+            display: block;
+
+        }
+
+
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(20px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+
+
+        .card {
+
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 28px;
+
+            margin-bottom: 18px;
+
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+
+            border: 1px solid rgba(0,0,0,0.05);
+
+        }
+
+
+
+        .card h2 {
+
+            color: #820AD1;
+
+            margin-bottom: 20px;
+
+            font-size: 1.5rem;
+
+            font-weight: 800;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+
+        .card h3 {
+
+            color: #820AD1;
+
+            margin: 20px 0 10px;
+
+            font-size: 1.1rem;
+
+            font-weight: 700;
+
+        }
+
+
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 20px;
+
+            margin: 20px 0;
+
+        }
+
+
+
+        .reason-box {
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            border-left: 4px solid;
+
+            background: #f8f9fa;
+
+        }
+
+
+
+        .critical { border-color: #dc3545; background: #fff5f5; }
+
+        .operational { border-color: #ffc107; background: #fffbf0; }
+
+        .relief { border-color: #28a745; background: #f0fff4; }
+
+        .transversal { border-color: #764ba2; background: #f5f0ff; }
+
+
+
+        .reason-box h4 {
+
+            margin-bottom: 8px;
+
+            font-size: 0.9rem;
+
+        }
+
+
+
+        .reason-list {
+
+            list-style: none;
+
+            padding-left: 0;
+
+            font-size: 0.88rem;
+
+        }
+
+
+
+        .reason-list li {
+
+            padding: 6px 0;
+
+            border-bottom: 1px solid #eee;
+
+        }
+
+
+
+        .reason-list li:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+
+        .stat-box {
+
+            background: linear-gradient(135deg, #820AD1 0%, #A855F7 100%);
+
+            color: white;
+
+            padding: 24px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            box-shadow: 0 8px 24px rgba(130, 10, 209, 0.25);
+
+            transition: transform 0.3s ease;
+
+        }
+
+
+
+        .stat-box:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow: 0 12px 32px rgba(130, 10, 209, 0.35);
+
+        }
+
+
+
+        .stat-box .number {
+
+            font-size: 2.2rem;
+
+            font-weight: 800;
+
+            display: block;
+
+            margin-bottom: 6px;
+
+        }
+
+
+
+        .stat-box .label {
+
+            font-size: 0.85rem;
+
+            opacity: 0.95;
+
+            font-weight: 500;
+
+        }
+
+
+
+        .problem-list {
+
+            list-style: none;
+
+        }
+
+
+
+        .problem-list li {
+
+            padding: 14px 16px;
+
+            margin: 10px 0;
+
+            background: #f8f9fa;
+
+            border-radius: 10px;
+
+            border-left: 4px solid #820AD1;
+
+            transition: all 0.2s ease;
+
+        }
+
+
+
+        .problem-list li:hover {
+
+            background: #f0f0f0;
+
+            transform: translateX(4px);
+
+        }
+
+
+
+        .problem-list li strong {
+
+            color: #820AD1;
+
+            font-weight: 700;
+
+        }
+
+
+
+        .impact-card {
+
+            background: white;
+
+            border: 2px solid #e9ecef;
+
+            border-radius: 10px;
+
+            padding: 18px;
+
+            margin: 12px 0;
+
+        }
+
+
+
+        .impact-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 12px;
+
+        }
+
+
+
+        .impact-title {
+
+            font-size: 1rem;
+
+            font-weight: bold;
+
+            color: #333;
+
+        }
+
+
+
+        .reduction-badge {
+
+            background: #dc3545;
+
+            color: white;
+
+            padding: 5px 14px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+
+            font-size: 0.8rem;
+
+        }
+
+
+
+        .mitigation-list {
+
+            list-style: none;
+
+            margin-top: 10px;
+
+            font-size: 0.88rem;
+
+        }
+
+
+
+        .mitigation-list li {
+
+            padding: 6px 0 6px 22px;
+
+            position: relative;
+
+        }
+
+
+
+        .mitigation-list li:before {
+
+            content: "✓";
+
+            position: absolute;
+
+            left: 0;
+
+            color: #28a745;
+
+            font-weight: bold;
+
+        }
+
+
+
+        .phase-timeline {
+
+            position: relative;
+
+            padding-left: 30px;
+
+        }
+
+
+
+        .phase-item {
+
+            position: relative;
+
+            padding: 18px 0 18px 24px;
+
+            border-left: 3px solid #820AD1;
+
+        }
+
+
+
+        .phase-item:before {
+
+            content: "";
+
+            position: absolute;
+
+            left: -9px;
+
+            top: 24px;
+
+            width: 16px;
+
+            height: 16px;
+
+            border-radius: 50%;
+
+            background: #820AD1;
+
+            border: 3px solid white;
+
+            box-shadow: 0 2px 8px rgba(130, 10, 209, 0.3);
+
+        }
+
+
+
+        .phase-item h4 {
+
+            color: #820AD1;
+
+            margin-bottom: 10px;
+
+            font-weight: 700;
+
+        }
+
+
+
+        .conclusion-box {
+
+            background: white;
+
+            color: #333;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            font-size: 0.95rem;
+
+            line-height: 1.8;
+
+            box-shadow: 0 8px 32px rgba(130, 10, 209, 0.15);
+
+            border: 3px solid #820AD1;
+
+        }
+
+
+
+        .conclusion-box strong {
+
+            font-size: 1.15rem;
+
+            font-weight: 700;
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #820AD1;
+
+        }
+
+
+
+        .highlight {
+
+            background: rgba(130, 10, 209, 0.1);
+
+            padding: 2px 6px;
+
+            border-radius: 6px;
+
+            font-weight: 600;
+
+            color: #820AD1;
+
+        }
+
+
+
+        .key-metrics {
+
+            display: flex;
+
+            justify-content: space-around;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+
+            margin: 20px 0;
+
+        }
+
+
+
+        @media (max-width: 768px) {
+
+            header h1 { font-size: 1.8rem; }
+
+            .grid { grid-template-columns: 1fr; }
+
+            .nav-tabs { flex-direction: column; }
+
+            .nav-tab { width: 100%; }
+
+        }
+
+
+
+        .emoji {
+
+            font-size: 1.2em;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+
+            <div class="nu-logo">Infínity</div>
+
+            <h1>Reporte Collections Squad</h1>
+
+            <p>Análisis tNPS y Plan de Mejora</p>
+
+            <p style="font-size: 0.85rem; margin-top: 8px; opacity: 0.9;">Diciembre 2025 - Mayo 2026</p>
+
+        </header>
+
+
+
+        <div class="nav-tabs">
+
+            <button class="nav-tab active" onclick="showSection(0)">Overview</button>
+
+            <button class="nav-tab" onclick="showSection(1)">Contact Reasons</button>
+
+            <button class="nav-tab" onclick="showSection(2)">Diagnóstico tNPS</button>
+
+            <button class="nav-tab" onclick="showSection(3)">Problemas</button>
+
+            <button class="nav-tab" onclick="showSection(4)">Impacto & Mitigación</button>
+
+            <button class="nav-tab" onclick="showSection(5)">Plan 6 Meses</button>
+
+            <button class="nav-tab" onclick="showSection(6)">Conclusión</button>
+
+        </div>
+
+
+
+        <!-- SECTION 0: OVERVIEW -->
+
+        <div class="section active" id="section-0">
+
+            <div class="card">
+
+                <h2>📈 Overview Ejecutivo</h2>
+
+                
+
+                <div class="key-metrics">
+
+                    <div class="stat-box">
+
+                        <span class="number">74.23%</span>
+
+                        <span class="label">tNPS Últimas Semanas</span>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <span class="number">82%</span>
+
+                        <span class="label">tNPS Esperado (Mayo 2026)</span>
+
+                    </div>
+
+                </div>
+
+
+
+                <h3>🎯 Hallazgo Principal</h3>
+
+                <p style="font-size: 0.95rem; padding: 18px; background: #fff5f5; border-radius: 8px; border-left: 4px solid #dc3545;">
+
+                    <strong style="color: #dc3545;">⚠️ Problema Crítico #1: Survey Return Rate bajo (6.7%)</strong><br>
+
+                    299 jobs generaron solo 20 surveys. Benchmark industria: 20-30%. Mínimo esperado: ~45 surveys.<br><br>
+
+                    <strong style="color: #820AD1;">Problema Crítico #2: Tercerización 100%</strong><br>
+
+                    Todas las contact reasons están tercerizadas (Konecta + Venus BPO), el tNPS depende del modelo de atención.<br><br>
+
+                    <strong>Meta: 74.23% → 82% (+7.77 pts) en 6 meses</strong>
+
+                </p>
+
+
+
+                <h3>📌 Proveedores</h3>
+
+                <div class="grid">
+
+                    <div class="reason-box transversal">
+
+                        <h4>🏢 Konecta</h4>
+
+                        <p>Proveedor BPO</p>
+
+                    </div>
+
+                    <div class="reason-box transversal">
+
+                        <h4>🏢 Venus</h4>
+
+                        <p>Proveedor BPO</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SECTION 1: CONTACT REASONS -->
+
+        <div class="section" id="section-1">
+
+            <div class="card">
+
+                <h2>📋 Contact Reasons Vigentes - Hallazgos Numéricos</h2>
+
+                
+
+                <h3>📊 Métricas Globales</h3>
+
+                <div class="key-metrics" style="margin-bottom: 30px;">
+
+                    <div class="stat-box" style="padding: 18px;">
+
+                        <span class="number" style="font-size: 1.8rem;">299</span>
+
+                        <span class="label" style="font-size: 0.75rem;">Total Jobs</span>
+
+                    </div>
+
+                    <div class="stat-box" style="padding: 18px; background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 100%);">
+
+                        <span class="number" style="font-size: 1.8rem;">20</span>
+
+                        <span class="label" style="font-size: 0.75rem;">Total Surveys</span>
+
+                    </div>
+
+                    <div class="stat-box" style="padding: 18px; background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 100%);">
+
+                        <span class="number" style="font-size: 1.8rem;">6.7%</span>
+
+                        <span class="label" style="font-size: 0.75rem;">Survey Return Rate</span>
+
+                    </div>
+
+                    <div class="stat-box" style="padding: 18px;">
+
+                        <span class="number" style="font-size: 1.8rem;">16-1-3</span>
+
+                        <span class="label" style="font-size: 0.75rem;">Prom-Neut-Detrac</span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div style="background: #fff5f5; padding: 16px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #dc3545;">
+
+                    <strong style="color: #dc3545;">🚨 Alerta: Survey Return Rate crítico</strong><br>
+
+                    <span style="font-size: 0.85rem;">
+
+                        Benchmark industria: 20-30% • Actual: 6.7% • Mínimo esperado con 299 jobs: ~45 surveys<br>
+
+                        <strong>Impacto:</strong> Volatilidad extrema - 1 detractor puede hundir un reason completo
+
+                    </span>
+
+                </div>
+
+
+
+                <h3>📈 Tabla de Métricas por Contact Reason</h3>
+
+                <div style="overflow-x: auto; margin: 20px 0;">
+
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.75rem;">
+
+                        <thead style="background: #820AD1; color: white;">
+
+                            <tr>
+
+                                <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Contact Reason</th>
+
+                                <th style="padding: 8px; text-align: center; border: 1px solid #ddd;">Jobs</th>
+
+                                <th style="padding: 8px; text-align: center; border: 1px solid #ddd;">Surveys</th>
+
+                                <th style="padding: 8px; text-align: center; border: 1px solid #ddd;">Prom</th>
+
+                                <th style="padding: 8px; text-align: center; border: 1px solid #ddd;">Neut</th>
+
+                                <th style="padding: 8px; text-align: center; border: 1px solid #ddd;">Detrac</th>
+
+                                <th style="padding: 8px; text-align: center; border: 1px solid #ddd;">tNPS</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr style="background: #fff5f5;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;"><strong>collections_general_refinance</strong></td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">30</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #dc3545; font-weight: bold;">-100%</td>
+
+                            </tr>
+
+                            <tr style="background: #fff5f5;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;"><strong>collections_insolvency</strong></td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">33</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #dc3545; font-weight: bold;">-100%</td>
+
+                            </tr>
+
+                            <tr style="background: #fffbf0;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_promise</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">59</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">8</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">6</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #ffc107; font-weight: bold;">62.5%</td>
+
+                            </tr>
+
+                            <tr style="background: #fffbf0;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_refinance</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">13</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #28a745; font-weight: bold;">100%</td>
+
+                            </tr>
+
+                            <tr style="background: #f0fff4;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_already_paid + late_block (27)</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">27</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #28a745; font-weight: bold;">100%</td>
+
+                            </tr>
+
+                            <tr style="background: #f0fff4;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_already_paid + late_block (44)</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">44</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">2</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">2</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #28a745; font-weight: bold;">100%</td>
+
+                            </tr>
+
+                            <tr style="background: #f0fff4;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_collections</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">27</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">2</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">2</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #28a745; font-weight: bold;">100%</td>
+
+                            </tr>
+
+                            <tr style="background: #f0fff4;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_debt_sell</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">33</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">2</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">2</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #28a745; font-weight: bold;">100%</td>
+
+                            </tr>
+
+                            <tr style="background: #f0fff4;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_report_bureaus</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">12</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">2</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">2</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #28a745; font-weight: bold;">100%</td>
+
+                            </tr>
+
+                            <tr style="background: #f8f9fa;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_comms</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">9</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #dc3545;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                            </tr>
+
+                            <tr style="background: #f8f9fa;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_late_interest</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">8</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #dc3545;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                            </tr>
+
+                            <tr style="background: #f8f9fa;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_law_2300</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #dc3545;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                            </tr>
+
+                            <tr style="background: #f8f9fa;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_discounts</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">1</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #dc3545;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                            </tr>
+
+                            <tr style="background: #f8f9fa;">
+
+                                <td style="padding: 6px; border: 1px solid #ddd;">collections_downpayment</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">2</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd; color: #dc3545;">0</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                                <td style="padding: 6px; text-align: center; border: 1px solid #ddd;">-</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+
+                <h3 style="margin-top: 30px;">🎯 Clasificación Estratégica (por Peso Numérico)</h3>
+
+
+
+                <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #0ea5e9;">
+
+                    <strong style="color: #0ea5e9;">📊 Nota Metodológica</strong><br>
+
+                    <span style="font-size: 0.85rem;">
+
+                        Reasons con 1 sola encuesta tienen bajo peso estadístico. Prioridad: <strong>collections_promise</strong> (8 surveys, 62.5% tNPS, 59 jobs = 19.7% del volumen)
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="grid">
+
+                    <div class="reason-box critical">
+
+                        <h4>🔴 A. Reason Crítica (Alto Volumen)</h4>
+
+                        <ul class="reason-list">
+
+                            <li><strong>collections_promise:</strong> 62.5% tNPS (8 surveys, 59 jobs - 19.7% volumen)</li>
+
+                            <li><strong>Impacto real:</strong> Única reason con volumen significativo y tNPS bajo</li>
+
+                            <li><strong>Prioridad 1:</strong> Arreglar este reason puede mover +5-7pts el tNPS global</li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div class="reason-box operational">
+
+                        <h4>🟡 B. Reasons Alto Volumen (Sin Data)</h4>
+
+                        <ul class="reason-list">
+
+                            <li><strong>collections_general_refinance:</strong> 30 jobs, 1 survey (-100% tNPS - bajo peso)</li>
+
+                            <li><strong>collections_insolvency:</strong> 33 jobs, 1 survey (-100% tNPS - bajo peso)</li>
+
+                            <li><strong>collections_comms:</strong> 9 jobs, 0 surveys (crítico por regulatorio)</li>
+
+                            <li><strong>collections_late_interest:</strong> 8 jobs, 0 surveys</li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div class="reason-box relief">
+
+                        <h4>🟢 C. Reasons de Alivio (Funcionan Bien)</h4>
+
+                        <ul class="reason-list">
+
+                            <li><strong>collections_already_paid + late_block:</strong> 100% tNPS (3 surveys, 71 jobs)</li>
+
+                            <li><strong>collections_debt_sell:</strong> 100% tNPS (2 surveys, 33 jobs)</li>
+
+                            <li><strong>collections_report_bureaus:</strong> 100% tNPS (2 surveys - prevenir deterioro)</li>
+
+                            <li><strong>collections_refinance:</strong> 100% tNPS (1 survey - monitorear)</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SECTION 2: DIAGNÓSTICO -->
+
+        <div class="section" id="section-2">
+
+            <div class="card">
+
+                <h2>🔍 Diagnóstico tNPS - Data Faltante Crítica</h2>
+
+                
+
+                <div style="background: #fff5f5; padding: 20px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #dc3545;">
+
+                    <h3 style="color: #dc3545; margin: 0 0 12px 0; font-size: 1.1rem;">⚠️ Limitación del Análisis</h3>
+
+                    <p style="margin: 0; font-size: 0.9rem;">
+
+                        El diagnóstico actual está basado únicamente en tNPS. Para un análisis robusto se requiere:
+
+                    </p>
+
+                    <ul style="margin: 12px 0 0 20px; font-size: 0.88rem;">
+
+                        <li><strong>AHT (Average Handle Time):</strong> Identificar reasons con tiempos anormales</li>
+
+                        <li><strong>QA Scores:</strong> Calidad de atención por reason y por agente</li>
+
+                        <li><strong>FRT (First Response Time):</strong> Velocidad de respuesta inicial</li>
+
+                        <li><strong>Survey Comments:</strong> Deep dive cualitativo en verbatims de detractores</li>
+
+                        <li><strong>Volumen por hora/día:</strong> Identificar patrones de deterioro</li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <h3>🔥 Principales Generadores de Detractores (Hipótesis Preliminar)</h3>
+
+                <div class="grid">
+
+                    <div class="reason-box critical">
+
+                        <h4>Mala comprensión del proceso</h4>
+
+                        <p>Refinance, Write Off</p>
+
+                    </div>
+
+                    <div class="reason-box critical">
+
+                        <h4>Miedo reputacional</h4>
+
+                        <p>Reporte a centrales</p>
+
+                    </div>
+
+                    <div class="reason-box critical">
+
+                        <h4>Tono inapropiado</h4>
+
+                        <p>Collections general, Ley 2300</p>
+
+                    </div>
+
+                    <div class="reason-box critical">
+
+                        <h4>Promesas incoherentes</h4>
+
+                        <p>Speech inconsistente entre BPOs</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <h3>🎯 Reason con Mayor Impacto Real: collections_promise</h3>
+
+                <div style="background: #fffbf0; padding: 18px; border-radius: 10px; border-left: 4px solid #ffc107; margin: 15px 0;">
+
+                    <strong style="color: #f59e0b;">📌 Por qué priorizar collections_promise:</strong>
+
+                    <ul style="margin: 10px 0 0 20px; font-size: 0.88rem;">
+
+                        <li><strong>59 jobs (19.7% del volumen total)</strong></li>
+
+                        <li><strong>8 surveys (40% de todas las encuestas)</strong></li>
+
+                        <li><strong>62.5% tNPS (6 promotores, 1 neutral, 1 detractor)</strong></li>
+
+                        <li>Arreglar este reason puede mover el tNPS global +5-7 puntos</li>
+
+                        <li>Es el único con peso estadístico significativo</li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <h3>⚠️ Problema #1: Survey Return Rate (6.7%)</h3>
+
+                <ul class="problem-list">
+
+                    <li><strong>20 surveys de 299 jobs</strong> = muestra insuficiente</li>
+
+                    <li><strong>Volatilidad extrema:</strong> 1 detractor tumba reasons completas</li>
+
+                    <li><strong>Solución:</strong> Aumentar rate a 20-30% (~60-90 surveys mensuales)</li>
+
+                </ul>
+
+
+
+                <h3>💚 Buen Desempeño en Reasons de Alivio</h3>
+
+                <p style="padding: 15px; background: #f0fff4; border-radius: 8px; border-left: 4px solid #28a745;">
+
+                    <strong>Promesa, Ya pagada, Tarjeta bloqueada</strong> muestran que cuando el speech está claro 
+
+                    y el proceso es simple, el BPO ejecuta bien.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SECTION 3: PROBLEMAS -->
+
+        <div class="section" id="section-3">
+
+            <div class="card">
+
+                <h2>⚠️ Problemas Fundamentales</h2>
+
+                
+
+                <div style="background: #fff5f5; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #dc3545;">
+
+                    <strong style="color: #dc3545; font-size: 1.05rem;">🚨 Problema Raíz: Survey Return Rate 6.7%</strong>
+
+                    <p style="margin: 8px 0 0 0; font-size: 0.9rem;">
+
+                        Este es el problema más grave. Sin suficientes encuestas, cualquier análisis es especulativo.
+
+                        <strong>Prioridad máxima:</strong> Llevar el rate de 6.7% a 20-30%.
+
+                    </p>
+
+                </div>
+
+
+
+                <ul class="problem-list">
+
+                    <li>
+
+                        <strong>1. Survey Return Rate crítico (6.7%)</strong><br>
+
+                        299 jobs → solo 20 surveys. Benchmark: 20-30%. Genera volatilidad extrema en métricas.
+
+                    </li>
+
+                    <li>
+
+                        <strong>2. Inconsistencia en speech entre BPOs</strong><br>
+
+                        Principal causa del deterioro del tNPS (después del return rate)
+
+                    </li>
+
+                    <li>
+
+                        <strong>3. Baja adherencia al material de apoyo (Weduka)</strong><br>
+
+                        Material disponible pero no todos los agentes lo consultan
+
+                    </li>
+
+                    <li>
+
+                        <strong>4. Falta data operativa crítica</strong><br>
+
+                        Sin AHT, QA, FRT, ni análisis de comments es difícil diagnosticar raíz
+
+                    </li>
+
+                    <li>
+
+                        <strong>5. collections_promise (único con peso real)</strong><br>
+
+                        62.5% tNPS, 59 jobs (19.7%), 8 surveys. Única reason con impacto medible.
+
+                    </li>
+
+                    <li>
+
+                        <strong>6. Reasons con 1 encuesta tienen -100% tNPS</strong><br>
+
+                        Bajo peso estadístico. No se puede concluir nada definitivo.
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SECTION 4: IMPACTO Y MITIGACIÓN -->
+
+        <div class="section" id="section-4">
+
+            <div class="card">
+
+                <h2>📊 Impacto Cuantitativo + Acciones de Mitigación</h2>
+
+                
+
+                <div style="background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 100%); color: white; padding: 24px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 6px 20px rgba(220, 53, 69, 0.25);">
+
+                    <h4 style="color: white; margin-bottom: 12px; font-size: 1.1rem; font-weight: 700;">
+
+                        🚨 Acción Prioritaria #1: Aumentar Survey Return Rate
+
+                    </h4>
+
+                    <p style="font-size: 0.9rem; line-height: 1.7;">
+
+                        <strong>Problema:</strong> 6.7% actual vs 20-30% benchmark → Solo 20 surveys de 299 jobs<br>
+
+                        <strong>Meta:</strong> Llegar a 60-90 surveys mensuales (20-30% rate)<br>
+
+                        <strong>Impacto:</strong> Sin esto, cualquier intervención en reasons es especulativa<br>
+
+                        <strong>Acciones:</strong> Revisar flujo de envío, timing, incentivos, formato de survey
+
+                    </p>
+
+                </div>
+
+
+
+                <div style="background: linear-gradient(135deg, #820AD1 0%, #A855F7 100%); color: white; padding: 24px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 6px 20px rgba(130, 10, 209, 0.25);">
+
+                    <h4 style="color: white; margin-bottom: 12px; font-size: 1.1rem; font-weight: 700;">
+
+                        ⭐ Acción Prioritaria #2: Arreglar collections_promise
+
+                    </h4>
+
+                    <p style="font-size: 0.9rem; line-height: 1.7;">
+
+                        Única reason con peso real: 59 jobs (19.7%), 8 surveys (40% del total), 62.5% tNPS<br>
+
+                        <strong>Potencial impacto:</strong> Subir de 62.5% a 90%+ puede mover el tNPS global +5-7 pts<br>
+
+                        <strong>Estrategia:</strong> Flujos visuales, speech único, análisis profundo del 1 detractor
+
+                    </p>
+
+                </div>
+
+
+
+                <h3 style="margin-top: 30px;">📋 Reasons Priorizadas por Peso Real</h3>
+
+
+
+                <div class="impact-card" style="border: 3px solid #ffc107;">
+
+                    <div class="impact-header">
+
+                        <span class="impact-title">🔥 1. collections_promise (PRIORIDAD MÁXIMA)</span>
+
+                        <span class="reduction-badge" style="background: #ffc107;">62.5% tNPS</span>
+
+                    </div>
+
+                    <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                        <strong>Por qué priorizar:</strong> 59 jobs (19.7%), 8 surveys (40% del total), único con peso estadístico real
+
+                    </p>
+
+                    <ul class="mitigation-list">
+
+                        <li>Deep dive en el 1 detractor: ¿qué salió mal?</li>
+
+                        <li>Análisis de survey comments de promotores y detractor</li>
+
+                        <li>Speech único para promesas de pago</li>
+
+                        <li>Flujo visual: cuándo prometer, qué prometer, qué NO prometer</li>
+
+                        <li>Tracking de cumplimiento de promesas</li>
+
+                        <li>QA enfocado en este reason específico</li>
+
+                    </ul>
+
+                    <p style="margin-top: 10px; font-style: italic; color: #666;">
+
+                        <strong>Impacto potencial:</strong> +5-7 pts en tNPS global si se sube de 62.5% a 90%+
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="impact-card">
+
+                    <div class="impact-header">
+
+                        <span class="impact-title">⚠️ 2. collections_general_refinance</span>
+
+                        <span class="reduction-badge">-100% tNPS (1 survey)</span>
+
+                    </div>
+
+                    <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                        <strong>Contexto:</strong> 30 jobs, solo 1 survey → Bajo peso estadístico, pero alto volumen potencial
+
+                    </p>
+
+                    <ul class="mitigation-list">
+
+                        <li>Aumentar survey return rate en este reason</li>
+
+                        <li>Analizar el comentario del único detractor</li>
+
+                        <li>Speech paso a paso para refinanciamiento</li>
+
+                        <li>Macros con ejemplos de cuotas y valores</li>
+
+                        <li>Flujo visual del proceso</li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="impact-card">
+
+                    <div class="impact-header">
+
+                        <span class="impact-title">⚠️ 3. collections_insolvency</span>
+
+                        <span class="reduction-badge">-100% tNPS (1 survey)</span>
+
+                    </div>
+
+                    <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                        <strong>Contexto:</strong> 33 jobs, solo 1 survey → Bajo peso estadístico
+
+                    </p>
+
+                    <ul class="mitigation-list">
+
+                        <li>Aumentar survey return rate</li>
+
+                        <li>Macro obligatoria con proceso de insolvencia</li>
+
+                        <li>Lista de promesas prohibidas</li>
+
+                        <li>Manejo empático de expectativas</li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="impact-card">
+
+                    <div class="impact-header">
+
+                        <span class="impact-title">🚨 4. collections_comms</span>
+
+                        <span class="reduction-badge">0 Surveys</span>
+
+                    </div>
+
+                    <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                        <strong>Problema:</strong> 9 jobs sin surveys - Riesgo regulatorio (Ley 2300)
+
+                    </p>
+
+                    <ul class="mitigation-list">
+
+                        <li>Aumentar survey return rate urgente</li>
+
+                        <li>Control de tono en comunicaciones</li>
+
+                        <li>Capacitación en normativa</li>
+
+                        <li>QA 100% en este tipo de contactos</li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <h3 style="margin-top: 30px;">⭐ Estrategia Seleccionada</h3>
+
+                <div style="background: linear-gradient(135deg, #820AD1 0%, #A855F7 100%); color: white; padding: 24px; border-radius: 16px; box-shadow: 0 8px 24px rgba(130, 10, 209, 0.25);">
+
+                    <h4 style="color: white; margin-bottom: 12px; font-size: 1.1rem;">
+
+                        Intervención Dual: Survey Rate + collections_promise
+
+                    </h4>
+
+                    <p style="font-size: 0.9rem; line-height: 1.7;">
+
+                        <strong>Fase 1:</strong> Aumentar survey return rate de 6.7% a 20-30%<br>
+
+                        <strong>Fase 2:</strong> Arreglar collections_promise (único con impacto medible)<br>
+
+                        <strong>Fase 3:</strong> Con más data, intervenir reasons restantes<br>
+
+                        Incluye: Playbook, speech unificado, flujos visuales, QA semanal, dashboard por reason y BPO
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SECTION 5: PLAN 6 MESES -->
+
+        <div class="section" id="section-5">
+
+            <div class="card">
+
+                <h2>📅 Plan de Trabajo (6 Meses)</h2>
+
+                
+
+                <div style="background: linear-gradient(135deg, #820AD1 0%, #A855F7 100%); color: white; padding: 20px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(130, 10, 209, 0.25); text-align: center;">
+
+                    <p style="font-size: 0.95rem; font-weight: 600; margin: 0;">
+
+                        ⚡ Todas las fases incluyen seguimiento semanal continuo de tNPS, Survey Rate, QA y adherencia
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="phase-timeline">
+
+                    <div class="phase-item">
+
+                        <h4>📍 Fase 1 — Diagnóstico Profundo (Sem 1-3)</h4>
+
+                        <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                            Recolección de data faltante y análisis para priorizar intervenciones correctas
+
+                        </p>
+
+                        <ul>
+
+                            <li><strong>Recolectar data crítica:</strong> AHT, QA scores, FRT, survey comments</li>
+
+                            <li><strong>Deep dive en collections_promise:</strong> Analizar el 1 detractor y 6 promotores</li>
+
+                            <li>Auditoría de chats por reason (focus en promise, refinance, insolvency)</li>
+
+                            <li>Comparación Konecta vs Venus</li>
+
+                            <li>Auditoría wedukas: % agentes que usan vs no usan</li>
+
+                            <li>Correlación tNPS vs uso de material</li>
+
+                            <li><strong>Acción inmediata:</strong> Intervenir survey flow para aumentar return rate</li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div class="phase-item">
+
+                        <h4>📍 Fase 2 — Quick Win: Survey Rate + Promise (Sem 4-8)</h4>
+
+                        <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                            Implementación rápida de mejoras en los 2 problemas críticos identificados
+
+                        </p>
+
+                        <ul>
+
+                            <li><strong>Survey Rate:</strong> Optimizar timing, formato, incentivos → Meta: 20-30%</li>
+
+                            <li><strong>collections_promise:</strong> Speech único, flujo visual, QA intensivo</li>
+
+                            <li>Playbook específico para promise (único reason con peso real)</li>
+
+                            <li>Capacitación express en promise (2 semanas)</li>
+
+                            <li>Validación con pilotos antes de escalar</li>
+
+                            <li>Medición de impacto en tNPS</li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div class="phase-item">
+
+                        <h4>📍 Fase 3 — Playbook Completo (Sem 9-14)</h4>
+
+                        <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                            Con más data (gracias a survey rate mejorado), expandir a todas las reasons
+
+                        </p>
+
+                        <ul>
+
+                            <li>Playbook Collections completo (10 reasons)</li>
+
+                            <li>Speech estandarizado por reason</li>
+
+                            <li>Flujos visuales y árboles de decisión</li>
+
+                            <li>Macros obligatorias</li>
+
+                            <li>Expectativas permitidas / no permitidas</li>
+
+                            <li>Manejo emocional por tipo de reason</li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div class="phase-item">
+
+                        <h4>📍 Fase 4 — Capacitación BPO (Sem 15-18)</h4>
+
+                        <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                            Transferencia de conocimiento y práctica intensiva para todos los agentes
+
+                        </p>
+
+                        <ul>
+
+                            <li>Entrenamiento por reason crítica</li>
+
+                            <li>Roleplay con casos reales</li>
+
+                            <li>Certificación obligatoria</li>
+
+                            <li>Seguimiento semanal de personal nuevo: tNPS individual</li>
+
+                            <li>Refuerzo en reasons con bajo desempeño</li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div class="phase-item">
+
+                        <h4>📍 Fase 5 — Implementación (Sem 19-22)</h4>
+
+                        <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                            Lanzamiento del modelo estandarizado con seguimiento continuo
+
+                        </p>
+
+                        <ul>
+
+                            <li>Activación completa del modelo</li>
+
+                            <li>QA diario en las primeras 2 semanas</li>
+
+                            <li>Seguimiento semanal de personal nuevo</li>
+
+                            <li>Ajustes rápidos basados en feedback</li>
+
+                            <li>Dashboard en tiempo real activo</li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div class="phase-item">
+
+                        <h4>📍 Fase 6 — Optimización Continua (Sem 23-26)</h4>
+
+                        <p style="margin-bottom: 10px; font-style: italic; color: #666; font-size: 0.85rem;">
+
+                            Monitoreo sistemático y mejora continua hasta alcanzar meta de 82%
+
+                        </p>
+
+                        <ul>
+
+                            <li>QA semanal por reason y por agente</li>
+
+                            <li>Dashboard en tiempo real: tNPS, survey rate, AHT, QA por BPO y reason</li>
+
+                            <li>Dashboard de adherencia wedukas</li>
+
+                            <li>Retroalimentación continua y ajustes</li>
+
+                            <li>Documentación de best practices</li>
+
+                            <li>Validación de meta: 82% tNPS</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+                <div style="margin-top: 30px; background: #f0fff4; padding: 20px; border-radius: 12px; border-left: 4px solid #28a745;">
+
+                    <h4 style="color: #28a745; margin-bottom: 12px;">✅ Timeline 6 Meses</h4>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px;">
+
+                        <div style="text-align: center;">
+
+                            <strong style="color: #820AD1; font-size: 1.2rem;">Mes 1</strong><br>
+
+                            <span style="font-size: 0.85rem;">Diagnóstico</span>
+
+                        </div>
+
+                        <div style="text-align: center;">
+
+                            <strong style="color: #820AD1; font-size: 1.2rem;">Mes 2</strong><br>
+
+                            <span style="font-size: 0.85rem;">Quick Wins</span>
+
+                        </div>
+
+                        <div style="text-align: center;">
+
+                            <strong style="color: #820AD1; font-size: 1.2rem;">Mes 3</strong><br>
+
+                            <span style="font-size: 0.85rem;">Playbook</span>
+
+                        </div>
+
+                        <div style="text-align: center;">
+
+                            <strong style="color: #820AD1; font-size: 1.2rem;">Mes 4</strong><br>
+
+                            <span style="font-size: 0.85rem;">Capacitación</span>
+
+                        </div>
+
+                        <div style="text-align: center;">
+
+                            <strong style="color: #820AD1; font-size: 1.2rem;">Mes 5</strong><br>
+
+                            <span style="font-size: 0.85rem;">Implementación</span>
+
+                        </div>
+
+                        <div style="text-align: center;">
+
+                            <strong style="color: #820AD1; font-size: 1.2rem;">Mes 6</strong><br>
+
+                            <span style="font-size: 0.85rem;">Optimización</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SECTION 6: CONCLUSIÓN -->
+
+        <div class="section" id="section-6">
+
+            <div class="card">
+
+                <h2>🎯 Conclusión Ejecutiva</h2>
+
+                
+
+                <div class="conclusion-box">
+
+                    <strong>🚨 Hallazgo #1: Survey Return Rate Crítico</strong>
+
+                    <p style="font-size: 0.88rem;">
+
+                        <span class="highlight">6.7% vs 20-30% benchmark</span> → Solo 20 surveys de 299 jobs. 
+
+                        Sin esto, cualquier análisis es especulativo.
+
+                    </p>
+
+                    
+
+                    <strong style="margin-top: 15px;">🎯 Hallazgo #2: collections_promise</strong>
+
+                    <p style="font-size: 0.88rem;">
+
+                        Único reason con peso real: <span class="highlight">59 jobs, 8 surveys, 62.5% tNPS</span>. 
+
+                        Potencial: +5-7 pts en tNPS global.
+
+                    </p>
+
+
+
+                    <strong style="margin-top: 15px;">⚠️ Limitaciones</strong>
+
+                    <p style="font-size: 0.88rem;">
+
+                        Falta data: AHT, QA, FRT, comments. Reasons con 1 encuesta tienen bajo peso estadístico.
+
+                    </p>
+
+                    
+
+                    <strong style="margin-top: 15px;">📊 Estrategia</strong>
+
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; margin-top: 10px; font-size: 0.88rem;">
+
+                        <strong style="color: #820AD1;">→</strong> Fase 1: Survey rate 6.7% → 20-30%<br>
+
+                        <strong style="color: #820AD1;">→</strong> Fase 2: Arreglar collections_promise<br>
+
+                        <strong style="color: #820AD1;">→</strong> Fase 3: Escalar a reasons restantes<br>
+
+                        <strong style="color: #820AD1;">→</strong> Timeline: 6 meses | Meta: <span class="highlight" style="font-size: 1.2rem;">74% → 82%</span>
+
+                    </div>
+
+                </div>
+
+
+
+                <h3 style="margin-top: 30px;">📊 Impactos del Proyecto</h3>
+
+                
+
+                <div class="grid" style="margin-top: 20px;">
+
+                    <div class="reason-box transversal">
+
+                        <h4>🔵 Impactos Inner (Dentro del Squad)</h4>
+
+                        <ul class="reason-list">
+
+                            <li>Survey return rate: 6.7% → 20-30%</li>
+
+                            <li>Data completa: AHT, QA, FRT, comments</li>
+
+                            <li>Playbook unificado Collections</li>
+
+                            <li>Dashboard tiempo real por reason y BPO</li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <div class="reason-box relief">
+
+                        <h4>🟢 Impactos Outer (Fuera del Squad)</h4>
+
+                        <ul class="reason-list">
+
+                            <li>tNPS Collections: 74% → 82%</li>
+
+                            <li>Modelo replicable para otros squads</li>
+
+                            <li>Reducción riesgo regulatorio (Ley 2300)</li>
+
+                            <li>Mejora reputación marca Nu</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+                <div style="margin-top: 30px; text-align: center;">
+
+                    <div class="key-metrics">
+
+                        <div class="stat-box">
+
+                            <span class="number">+7.77</span>
+
+                            <span class="label">Puntos a mejorar tNPS</span>
+
+                        </div>
+
+                        <div class="stat-box">
+
+                            <span class="number">6</span>
+
+                            <span class="label">Meses de implementación</span>
+
+                        </div>
+
+                        <div class="stat-box" style="background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 100%);">
+
+                            <span class="number">6.7%→30%</span>
+
+                            <span class="label">Survey Rate (Prioridad #1)</span>
+
+                        </div>
+
+                        <div class="stat-box">
+
+                            <span class="number">2 BPOs</span>
+
+                            <span class="label">Konecta + Venus</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        function showSection(index) {
+
+            // Hide all sections
+
+            const sections = document.querySelectorAll('.section');
+
+            sections.forEach(section => section.classList.remove('active'));
+
+            
+
+            // Remove active class from all tabs
+
+            const tabs = document.querySelectorAll('.nav-tab');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            
+
+            // Show selected section
+
+            document.getElementById(`section-${index}`).classList.add('active');
+
+            tabs[index].classList.add('active');
+
+            
+
+            // Scroll to top
+
+            window.scrollTo({top: 0, behavior: 'smooth'});
+
+        }
+
+    </script>
+
+</body>
+
+</html>
